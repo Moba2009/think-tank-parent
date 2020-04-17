@@ -67,7 +67,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             log.info("### User is not logged in, please log in first ###");
             //设置响应状态码
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-//            response.setCharacterEncoding("utf-8");
+            //设置响应数据类型和编码方式
             response.setContentType("application/json; charset=utf-8");
             Result result = new Result(ResultCode.USER_NOT_LOGGED_IN);
             log.info("### 响应体数据：" + result + " ###");
@@ -84,7 +84,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         }
 
         // 验证token是否有效--无效已做异常抛出，由全局异常处理后返回对应信息
-        JwtTokenUtil.parseJWT(token, audience.getBase64Secret());
+        JwtTokenUtil.parseJWT(token, audience.getBase64Secret(), response);
 
         return true;
     }

@@ -2,13 +2,17 @@ package cn.linyt.thinktanklogin.utils;
 
 import cn.linyt.thinktanklogin.entity.Audience;
 import cn.linyt.thinktanklogin.exception.CustomException;
+import cn.linyt.thinktanklogin.response.Result;
 import cn.linyt.thinktanklogin.response.ResultCode;
+import com.alibaba.fastjson.JSONObject;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.crypto.spec.SecretKeySpec;
+import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
+import java.io.IOException;
 import java.security.Key;
 import java.util.Date;
 
@@ -33,7 +37,7 @@ public class JwtTokenUtil {
      * @param base64Security
      * @return
      */
-    public static Claims parseJWT(String jsonWebToken, String base64Security) {
+    public static Claims parseJWT(String jsonWebToken, String base64Security, HttpServletResponse response) throws IOException {
         try {
             Claims claims = Jwts.parser()
                     .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
@@ -41,9 +45,23 @@ public class JwtTokenUtil {
             return claims;
         } catch (ExpiredJwtException eje) {
             log.error("===== Token过期 =====", eje);
+            //设置响应状态码
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            //设置响应数据类型和编码方式
+            response.setContentType("application/json; charset=utf-8");
+            Result result = new Result(ResultCode.PERMISSION_TOKEN_EXPIRED);
+            log.info("### 响应体数据：" + result + " ###");
+            response.getWriter().write(JSONObject.toJSONString(result));
             throw new CustomException(ResultCode.PERMISSION_TOKEN_EXPIRED);
         } catch (Exception e){
             log.error("===== token解析异常 =====", e);
+            //设置响应状态码
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            //设置响应数据类型和编码方式
+            response.setContentType("application/json; charset=utf-8");
+            Result result = new Result(ResultCode.PERMISSION_TOKEN_EXPIRED);
+            log.info("### 响应体数据：" + result + " ###");
+            response.getWriter().write(JSONObject.toJSONString(result));
             throw new CustomException(ResultCode.PERMISSION_TOKEN_INVALID);
         }
     }
@@ -56,7 +74,7 @@ public class JwtTokenUtil {
      * @param audience
      * @return
      */
-    public static String createJWT(String userId, String username, String role, Audience audience) {
+    public static String createJWT(String userId, String username, String role, Audience audience, HttpServletResponse response) throws IOException {
         try {
             // 使用HS256加密算法
             SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -94,6 +112,13 @@ public class JwtTokenUtil {
             return builder.compact();
         } catch (Exception e) {
             log.error("签名失败", e);
+            //设置响应状态码
+            response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            //设置响应数据类型和编码方式
+            response.setContentType("application/json; charset=utf-8");
+            Result result = new Result(ResultCode.PERMISSION_SIGNATURE_ERROR);
+            log.info("### 响应体数据：" + result + " ###");
+            response.getWriter().write(JSONObject.toJSONString(result));
             throw new CustomException(ResultCode.PERMISSION_SIGNATURE_ERROR);
         }
     }
@@ -104,8 +129,8 @@ public class JwtTokenUtil {
      * @param base64Security
      * @return
      */
-    public static String getUsername(String token, String base64Security){
-        return parseJWT(token, base64Security).getSubject();
+    public static String getUsername(String token, String base64Security, HttpServletResponse response) throws IOException {
+        return parseJWT(token, base64Security, response).getSubject();
     }
 
     /**
@@ -114,8 +139,8 @@ public class JwtTokenUtil {
      * @param base64Security
      * @return
      */
-    public static String getUserId(String token, String base64Security){
-        String userId = parseJWT(token, base64Security).get("userId", String.class);
+    public static String getUserId(String token, String base64Security, HttpServletResponse response) throws IOException {
+        String userId = parseJWT(token, base64Security, response).get("userId", String.class);
         return Base64Util.decode(userId);
     }
 
@@ -125,7 +150,7 @@ public class JwtTokenUtil {
      * @param base64Security
      * @return
      */
-    public static boolean isExpiration(String token, String base64Security) {
-        return parseJWT(token, base64Security).getExpiration().before(new Date());
+    public static boolean isExpiration(String token, String base64Security, HttpServletResponse response) throws IOException {
+        return parseJWT(token, base64Security, response).getExpiration().before(new Date());
     }
 }

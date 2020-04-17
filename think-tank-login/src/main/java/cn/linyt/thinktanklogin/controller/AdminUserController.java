@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -30,7 +31,7 @@ public class AdminUserController {
 
     @JwtIgnore
     @PostMapping("/login")
-    public Result adminLogin(HttpServletResponse response, @RequestBody User user) {
+    public Result adminLogin(HttpServletResponse response, @RequestBody User user) throws IOException {
 
         // 这里模拟测试, 默认登录成功，返回用户ID和角色信息
         if (!"admin".equals(user.getUsername()) && !"666666".equals(user.getPassword())) {
@@ -43,7 +44,7 @@ public class AdminUserController {
         String role = "admin";
 
         // 创建token
-        String token = JwtTokenUtil.createJWT(userId, user.getUsername(), role, audience);
+        String token = JwtTokenUtil.createJWT(userId, user.getUsername(), role, audience, response);
         log.info("### 登录成功, token={} ###", token);
 
         // 将token放在响应头
