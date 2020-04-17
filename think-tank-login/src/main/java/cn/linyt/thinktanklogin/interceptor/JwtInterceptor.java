@@ -33,6 +33,8 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
+        boolean b = handler instanceof HandlerMethod;
+        log.info("### " + String.valueOf(b) + " ###");
         // 登录的不拦截
         /*String requestURI = request.getRequestURI();
         if (requestURI.contains("/login") || requestURI.contains("/hello")) {
