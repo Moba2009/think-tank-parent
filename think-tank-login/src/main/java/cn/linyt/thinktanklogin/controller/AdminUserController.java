@@ -36,7 +36,7 @@ public class AdminUserController {
         if (!"admin".equals(user.getUsername()) && !"666666".equals(user.getPassword())) {
             log.info("### username: " + user.getUsername() + " ###");
             log.info("### password: " + user.getPassword() + " ###");
-            log.info("### 用户名或密码错误! ###");
+            log.info("### username and password is fail! ###");
             return Result.FAIL("用户名或密码错误!");
         }
         String userId = UUID.randomUUID().toString();
