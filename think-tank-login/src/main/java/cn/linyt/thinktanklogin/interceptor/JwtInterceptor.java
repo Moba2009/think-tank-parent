@@ -32,8 +32,6 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        boolean b = handler instanceof HandlerMethod;
-        log.info("### " + String.valueOf(b) + " ###");
         // 登录的不拦截
         /*String requestURI = request.getRequestURI();
         if (requestURI.contains("/login") || requestURI.contains("/hello")) {
@@ -42,12 +40,17 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         }*/
         // 忽略带JwtIgnore注解的请求, 不做后续token认证校验
 //        if (handler instanceof HandlerMethod) {
-            HandlerMethod handlerMethod = (HandlerMethod) handler;
-            if (handlerMethod.getBeanType().isAnnotationPresent(JwtIgnore.class)) {
+        boolean assignableFrom = handler.getClass().isAssignableFrom(HandlerMethod.class);
+        log.info("### 当前方法是否存在注解： " + assignableFrom + " ###");
+        if (assignableFrom) {
+            JwtIgnore jwtIgnore = ((HandlerMethod) handler).getMethodAnnotation(JwtIgnore.class);
+            if (jwtIgnore == null)
+                log.info("### jwtIgnore is non-exist ###");
+            else {
                 log.info("### jwtIgnore is exist ###");
                 return true;
             }
-            log.info("### jwtIgnore is non-exist ###");
+        }
 //        }
 
         if (HttpMethod.OPTIONS.equals(request.getMethod())) {
