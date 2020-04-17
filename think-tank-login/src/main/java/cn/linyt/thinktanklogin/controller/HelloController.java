@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/hello")
 public class HelloController {
 
-    @JwtIgnore
+//    @JwtIgnore
     @PostMapping
     public Result hello(@RequestBody String data) {
 
