@@ -44,10 +44,10 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             JwtIgnore jwtIgnore = handlerMethod.getMethodAnnotation(JwtIgnore.class);
             if (jwtIgnore != null) {
-                log.info("true");
+                log.info("### jwtIgnore is exist ###");
                 return true;
             }
-            log.info("false");
+            log.info("### jwtIgnore is non-exist ###");
         }
 
         if (HttpMethod.OPTIONS.equals(request.getMethod())) {
