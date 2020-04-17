@@ -5,7 +5,6 @@ import cn.linyt.thinktanklogin.entity.Audience;
 import cn.linyt.thinktanklogin.exception.CustomException;
 import cn.linyt.thinktanklogin.response.ResultCode;
 import cn.linyt.thinktanklogin.utils.JwtTokenUtil;
-import com.sun.xml.internal.ws.util.HandlerAnnotationInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -45,7 +43,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         // 忽略带JwtIgnore注解的请求, 不做后续token认证校验
         if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
-            JwtIgnore jwtIgnore = handlerMethod.getBeanType().getAnnotation(JwtIgnore.class);
+            JwtIgnore jwtIgnore = handlerMethod.getMethod().getAnnotation(JwtIgnore.class);
             if (jwtIgnore != null) {
                 log.info("### jwtIgnore is exist ###");
                 return super.preHandle(request, response, handler);
