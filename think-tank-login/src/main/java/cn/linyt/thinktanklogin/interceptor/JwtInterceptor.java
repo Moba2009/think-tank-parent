@@ -42,13 +42,21 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             return true;
         }*/
         // 忽略带JwtIgnore注解的请求, 不做后续token认证校验
-        if (handler instanceof HandlerMethod) {
+        /*if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             JwtIgnore jwtIgnore = handlerMethod.getMethodAnnotation(JwtIgnore.class);
             if (jwtIgnore != null) {
                 log.info("### jwtIgnore is exist ###");
                 return true;
             }
+            log.info("### jwtIgnore is non-exist ###");
+        }*/
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        JwtIgnore jwtIgnore = handlerMethod.getBeanType().getAnnotation(JwtIgnore.class);
+        if (jwtIgnore != null) {
+            log.info("### jwtIgnore is exist ###");
+            return true;
+        } else {
             log.info("### jwtIgnore is non-exist ###");
         }
 
