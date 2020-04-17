@@ -48,7 +48,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             JwtIgnore jwtIgnore = handlerMethod.getBeanType().getAnnotation(JwtIgnore.class);
             if (jwtIgnore != null) {
                 log.info("### jwtIgnore is exist ###");
-                return true;
+                return super.preHandle(request, response, handler);
             }
             log.info("### jwtIgnore is non-exist ###");
         }
