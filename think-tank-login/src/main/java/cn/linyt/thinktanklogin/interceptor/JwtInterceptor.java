@@ -61,7 +61,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         log.info("### authHeader= {}", authHeader);
 
         if (StringUtils.isEmpty(authHeader) || !authHeader.startsWith(JwtTokenUtil.TOKEN_PREFIX)) {
-            log.info("### 用户未登录，请先登录 ###");
+            log.info("### User is not logged in, please log in first ###");
             throw new CustomException(ResultCode.USER_NOT_LOGGED_IN);
         }
 
