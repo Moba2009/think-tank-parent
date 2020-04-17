@@ -5,6 +5,7 @@ import cn.linyt.thinktanklogin.entity.Audience;
 import cn.linyt.thinktanklogin.exception.CustomException;
 import cn.linyt.thinktanklogin.response.ResultCode;
 import cn.linyt.thinktanklogin.utils.JwtTokenUtil;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +64,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         if (StringUtils.isEmpty(authHeader) || !authHeader.startsWith(JwtTokenUtil.TOKEN_PREFIX)) {
             log.info("### User is not logged in, please log in first ###");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write(String.valueOf(ResultCode.USER_NOT_LOGGED_IN));
+            response.getWriter().write(new JSONObject().put("result", ResultCode.USER_NOT_LOGGED_IN).toString());
             throw new CustomException(ResultCode.USER_NOT_LOGGED_IN);
         }
 
