@@ -64,7 +64,9 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         if (StringUtils.isEmpty(authHeader) || !authHeader.startsWith(JwtTokenUtil.TOKEN_PREFIX)) {
             log.info("### User is not logged in, please log in first ###");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            response.getWriter().write(new JSONObject().put("result", ResultCode.USER_NOT_LOGGED_IN).toString());
+            JSONObject result = new JSONObject();
+            result.put("result", ResultCode.USER_NOT_LOGGED_IN);
+            response.getWriter().write(result.toJSONString());
             throw new CustomException(ResultCode.USER_NOT_LOGGED_IN);
         }
 
