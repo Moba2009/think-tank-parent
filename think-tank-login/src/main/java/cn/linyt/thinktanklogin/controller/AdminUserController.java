@@ -1,5 +1,6 @@
 package cn.linyt.thinktanklogin.controller;
 
+import cn.linyt.thinktanklogin.annotation.JwtIgnore;
 import cn.linyt.thinktanklogin.entity.Audience;
 import cn.linyt.thinktanklogin.entity.User;
 import cn.linyt.thinktanklogin.response.Result;
@@ -27,7 +28,7 @@ public class AdminUserController {
     @Autowired
     private Audience audience;
 
-//    @JwtIgnore
+    @JwtIgnore
     @PostMapping("/login")
     public Result adminLogin(HttpServletResponse response, @RequestBody User user) {
 

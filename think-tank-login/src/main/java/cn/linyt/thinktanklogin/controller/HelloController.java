@@ -1,5 +1,6 @@
 package cn.linyt.thinktanklogin.controller;
 
+import cn.linyt.thinktanklogin.annotation.JwtIgnore;
 import cn.linyt.thinktanklogin.response.Result;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/hello")
 public class HelloController {
 
-//    @JwtIgnore
+    @JwtIgnore
     @PostMapping
     public Result hello(@RequestBody String data) {
 
