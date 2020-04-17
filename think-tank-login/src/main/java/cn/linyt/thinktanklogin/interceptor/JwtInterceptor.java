@@ -5,6 +5,7 @@ import cn.linyt.thinktanklogin.entity.Audience;
 import cn.linyt.thinktanklogin.exception.CustomException;
 import cn.linyt.thinktanklogin.response.ResultCode;
 import cn.linyt.thinktanklogin.utils.JwtTokenUtil;
+import com.sun.xml.internal.ws.util.HandlerAnnotationInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,21 +43,13 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             return true;
         }*/
         // 忽略带JwtIgnore注解的请求, 不做后续token认证校验
-        /*if (handler instanceof HandlerMethod) {
+        if (handler instanceof HandlerMethod) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
-            JwtIgnore jwtIgnore = handlerMethod.getMethodAnnotation(JwtIgnore.class);
+            JwtIgnore jwtIgnore = handlerMethod.getBeanType().getAnnotation(JwtIgnore.class);
             if (jwtIgnore != null) {
                 log.info("### jwtIgnore is exist ###");
                 return true;
             }
-            log.info("### jwtIgnore is non-exist ###");
-        }*/
-        HandlerMethod handlerMethod = (HandlerMethod) handler;
-        JwtIgnore jwtIgnore = handlerMethod.getBeanType().getAnnotation(JwtIgnore.class);
-        if (jwtIgnore != null) {
-            log.info("### jwtIgnore is exist ###");
-            return true;
-        } else {
             log.info("### jwtIgnore is non-exist ###");
         }
 
