@@ -38,20 +38,18 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             log.info("### is login ###");
             return true;
         }*/
-        // 忽略带JwtIgnore注解的请求, 不做后续token认证校验
-//        if (handler instanceof HandlerMethod) {
-        boolean assignableFrom = handler.getClass().isAssignableFrom(HandlerMethod.class);
-        log.info("### 当前方法是否存在注解： " + assignableFrom + " ###");
-        if (assignableFrom) {
-            JwtIgnore jwtIgnore = ((HandlerMethod) handler).getMethodAnnotation(JwtIgnore.class);
-            if (jwtIgnore == null)
-                log.info("### jwtIgnore is non-exist ###");
-            else {
-                log.info("### jwtIgnore is exist ###");
-                return true;
-            }
+        //如果不是映射到方法直接通过
+        if (!(handler instanceof HandlerMethod)) {
+            return true;
         }
-//        }
+        HandlerMethod handlerMethod = (HandlerMethod) handler;
+        JwtIgnore jwtIgnore = handlerMethod.getMethod().getAnnotation(JwtIgnore.class);
+        // 忽略带JwtIgnore注解的请求, 不做后续token认证校验
+        if (jwtIgnore != null){
+            log.info("### jwtIgnore is exist ###");
+            return true;
+        }
+        log.info("### jwtIgnore is non-exist ###");
 
         if (HttpMethod.OPTIONS.equals(request.getMethod())) {
             response.setStatus(HttpServletResponse.SC_OK);
