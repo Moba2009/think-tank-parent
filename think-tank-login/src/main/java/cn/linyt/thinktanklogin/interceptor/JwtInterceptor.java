@@ -68,10 +68,8 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
             //设置响应状态码
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             //设置响应数据类型和编码方式
-            response.setContentType("application/json; charset=utf-8");
-            Result result = new Result(ResultCode.USER_NOT_LOGGED_IN);
-            log.info("### 响应体数据：" + result + " ###");
-            response.getWriter().write(JSONObject.toJSONString(result));
+//            response.setContentType("application/json; charset=utf-8");
+            response.getWriter().write(JSONObject.toJSONString(Result.FAIL()));
             throw new CustomException(ResultCode.USER_NOT_LOGGED_IN);
         }
 

@@ -3,11 +3,15 @@ package cn.linyt.thinktankmedicine.controller;
 import cn.linyt.thinktankmedicine.entity.Medicine;
 import cn.linyt.thinktankmedicine.entity.MedicinePro;
 import cn.linyt.thinktankmedicine.repository.MedicineRepository;
+import cn.linyt.thinktankmedicine.response.Result;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -32,7 +36,7 @@ public class MedicineController {
      * @Date 2020/4/19 1:54
      **/
     @GetMapping
-    public List<MedicinePro> list(HttpServletResponse response) {
+    public List<MedicinePro> list(HttpServletResponse response) throws IOException {
 
         //获取药材列表
         log.info("### get medicines ###");
@@ -47,8 +51,6 @@ public class MedicineController {
             else
                 medicineProList.add(new MedicinePro(type, list));
         }
-        //设置响应数据类型和编码方式
-        response.setContentType("application/json; charset=utf-8");
         return medicineProList;
     }
 
@@ -58,13 +60,27 @@ public class MedicineController {
      * @Date 2020/4/19 2:01
      **/
     @GetMapping("/{id}")
-    public Medicine detail(@PathVariable(value = "id") Long id, HttpServletResponse response) {
+    public Medicine detail(@PathVariable(value = "id") Long id, HttpServletResponse response) throws IOException {
 
         //获取详情页
         log.info("### get detail ###");
         Optional<Medicine> byId = medicineRepository.findById(id);
-        //设置响应数据类型和编码方式
-        response.setContentType("application/json; charset=utf-8");
         return byId.get();
+    }
+
+    /**
+     * @Description TODO    POST /medicines/save
+     * @Author Mojo
+     * @Date 2020/4/19 3:11
+     **/
+    @PostMapping("/save")
+    public Result save(@RequestBody Medicine medicine, HttpServletResponse response) {
+
+        if (medicine == null) {
+            response.setStatus(422);
+            return Result.FAIL("没有接受到对象");
+        }
+        medicineRepository.save(medicine);
+        return Result.SUCCESS();
     }
 }
