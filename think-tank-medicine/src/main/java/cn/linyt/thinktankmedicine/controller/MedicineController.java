@@ -71,7 +71,7 @@ public class MedicineController {
      * @Author Mojo
      * @Date 2020/4/19 3:11
      **/
-    @PostMapping("/save")
+    @GetMapping("/save")
     public Result save(@RequestBody Medicine medicine, HttpServletResponse response) {
 
         if (medicine == null) {
