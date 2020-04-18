@@ -1,13 +1,11 @@
 package cn.linyt.thinktankmedicine.controller;
 
+import cn.linyt.common.response.Result;
 import cn.linyt.thinktankmedicine.entity.Medicine;
 import cn.linyt.thinktankmedicine.entity.MedicinePro;
 import cn.linyt.thinktankmedicine.repository.MedicineRepository;
-import cn.linyt.thinktankmedicine.response.Result;
-import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;

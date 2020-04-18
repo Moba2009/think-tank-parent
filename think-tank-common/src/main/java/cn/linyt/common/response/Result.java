@@ -1,4 +1,4 @@
-package cn.linyt.thinktankmedicine.response;
+package cn.linyt.common.response;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 

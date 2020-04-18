@@ -1,4 +1,4 @@
-package cn.linyt.thinktankmedicine.response;
+package cn.linyt.common.response;
 
 /**
  * @Description TODO    通用响应状态
