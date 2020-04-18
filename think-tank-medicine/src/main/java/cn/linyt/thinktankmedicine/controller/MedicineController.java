@@ -57,7 +57,7 @@ public class MedicineController {
      * @Author Mojo
      * @Date 2020/4/19 2:01
      **/
-    @GetMapping
+    @GetMapping("/{id}")
     public Medicine detail(@PathVariable(value = "id") Long id, HttpServletResponse response) {
 
         //获取详情页
