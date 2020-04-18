@@ -15,10 +15,10 @@ import java.util.List;
 public class MedicinePro {
 
     private String label;
-    private List<Medicine> list;
+    private List<Medicine> children;
 
-    public MedicinePro(String label, List<Medicine> list) {
+    public MedicinePro(String label, List<Medicine> children) {
         this.label = label;
-        this.list = list;
+        this.children = children;
     }
 }
