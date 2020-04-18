@@ -1,7 +1,8 @@
-package cn.linyt.thinktanklogin.exception;
+package cn.linyt.common.exception;
 
 
-import cn.linyt.thinktanklogin.response.ResultCode;
+
+import cn.linyt.common.response.ResultCode;
 
 import java.text.MessageFormat;
 

@@ -1,9 +1,10 @@
 package cn.linyt.thinktankmedicine.controller;
 
+import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.response.Result;
+import cn.linyt.thinktankmedicine.repository.MedicineRepository;
 import cn.linyt.thinktankmedicine.entity.Medicine;
 import cn.linyt.thinktankmedicine.entity.MedicinePro;
-import cn.linyt.thinktankmedicine.repository.MedicineRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -57,6 +58,7 @@ public class MedicineController {
      * @Author Mojo
      * @Date 2020/4/19 2:01
      **/
+    @JwtIgnore
     @GetMapping("/{id}")
     public Medicine detail(@PathVariable(value = "id") Long id, HttpServletResponse response) throws IOException {
 

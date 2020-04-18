@@ -1,4 +1,4 @@
-package cn.linyt.thinktanklogin.annotation;
+package cn.linyt.common.annotation;
 
 import java.lang.annotation.*;
 

@@ -1,4 +1,4 @@
-package cn.linyt.thinktanklogin.entity;
+package cn.linyt.common.entity;
 
 import lombok.Data;
 
