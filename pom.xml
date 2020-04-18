@@ -17,6 +17,7 @@
 
     <modules>
         <module>think-tank-login</module>
+        <module>think-tank-medicine</module>
     </modules>
 
     <dependencies>
