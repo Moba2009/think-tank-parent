@@ -21,7 +21,7 @@ public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;    //药名
+    private String label;    //药名
     private String type;    //药名首字母
     private Long price;     //售价
     private Long cost;      //成本

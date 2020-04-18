@@ -14,11 +14,11 @@ import java.util.List;
 @Data
 public class MedicinePro {
 
-    private String type;
+    private String label;
     private List<Medicine> list;
 
-    public MedicinePro(String type, List<Medicine> list) {
-        this.type = type;
+    public MedicinePro(String label, List<Medicine> list) {
+        this.label = label;
         this.list = list;
     }
 }
