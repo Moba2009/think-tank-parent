@@ -4,9 +4,12 @@ import cn.linyt.common.response.Result;
 import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.thinktanklogin.entity.Audience;
 import cn.linyt.thinktanklogin.entity.User;
+import cn.linyt.thinktanklogin.repository.UserRepository;
 import cn.linyt.thinktanklogin.utils.JwtTokenUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -30,17 +33,25 @@ public class AdminUserController {
     @Autowired
     private Audience audience;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @JwtIgnore
     @PostMapping("/login")
     public Result adminLogin(Model model, HttpServletResponse response, @RequestBody User user) throws IOException {
 
-        // 这里模拟测试, 默认登录成功，返回用户ID和角色信息
-        if (!"admin".equals(user.getUsername()) || !"666666".equals(user.getPassword())) {
-            log.info("### username: " + user.getUsername() + " ###");
-            log.info("### password: " + user.getPassword() + " ###");
-            log.info("### username and password is fail! ###");
-            return Result.FAIL("用户名或密码错误!");
-        }
+        // 检测是否登录
+        boolean exist = userRepository.findByUsernameAndPassword(user);
+        log.info("### user: {} ###", exist);
+        /*if (!user.getUsername().equals(userRepository.findOne())) {
+            //用户名错误
+            log.info("### username is fail! ###");
+            return Result.FAIL("用户名错误");
+        } else if (!"666666".equals(user.getPassword())) {
+            //用户名错误
+            log.info("### password is fail! ###");
+            return Result.FAIL("密码错误");
+        }   //登录成功*/
         String userId = UUID.randomUUID().toString();
         String role = "admin";
 
