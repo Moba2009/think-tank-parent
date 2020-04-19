@@ -2,6 +2,7 @@ package cn.linyt.thinktankmedicine.controller;
 
 import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.response.Result;
+import cn.linyt.common.utils.PinYinUtil;
 import cn.linyt.thinktankmedicine.repository.MedicineRepository;
 import cn.linyt.thinktankmedicine.entity.Medicine;
 import cn.linyt.thinktankmedicine.entity.MedicinePro;
@@ -72,8 +73,27 @@ public class MedicineController {
      * @Author Mojo
      * @Date 2020/4/19 3:11
      **/
-    @GetMapping("/save")
+    @PostMapping("/save")
     public Result save(@RequestBody Medicine medicine, HttpServletResponse response) {
+
+        if (medicine == null) {
+            response.setStatus(422);
+            return Result.FAIL("没有接受到对象");
+        }
+        //生成药材名的首字母
+        String pinYin = PinYinUtil.getPinYin(medicine.getType());
+        medicine.setType(PinYinUtil.getPinYin(medicine.getType()).substring(0, 1));
+        medicineRepository.save(medicine);
+        return Result.SUCCESS();
+    }
+
+    /**
+     * @Description TODO    PUT /medicines/update
+     * @Author Mojo
+     * @Date 2020/4/20 1:34
+     **/
+    @PutMapping("/update")
+    public Result update(@RequestBody Medicine medicine, HttpServletResponse response) {
 
         if (medicine == null) {
             response.setStatus(422);
