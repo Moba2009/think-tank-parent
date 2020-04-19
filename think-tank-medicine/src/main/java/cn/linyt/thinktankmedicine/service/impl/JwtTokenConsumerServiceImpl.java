@@ -1,7 +1,7 @@
 package cn.linyt.thinktankmedicine.service.impl;
 
-import cn.linyt.common.service.JwtTokenConsumerService;
-import cn.linyt.common.service.JwtTokenProviderService;
+import cn.linyt.thinktankmedicine.service.JwtTokenConsumerService;
+import cn.linyt.thinktankmedicine.service.JwtTokenProviderService;
 import com.alibaba.dubbo.config.annotation.Reference;
 import org.springframework.stereotype.Component;
 

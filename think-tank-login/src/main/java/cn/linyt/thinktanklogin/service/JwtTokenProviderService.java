@@ -1,4 +1,4 @@
-package cn.linyt.common.service;
+package cn.linyt.thinktanklogin.service;
 
 import java.io.IOException;
 

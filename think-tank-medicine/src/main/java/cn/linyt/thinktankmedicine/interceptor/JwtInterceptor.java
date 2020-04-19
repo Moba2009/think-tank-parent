@@ -4,14 +4,11 @@ import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.exception.CustomException;
 import cn.linyt.common.response.Result;
 import cn.linyt.common.response.ResultCode;
-import cn.linyt.common.service.JwtTokenConsumerService;
+import cn.linyt.thinktankmedicine.service.JwtTokenConsumerService;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
-import org.springframework.util.StringUtils;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

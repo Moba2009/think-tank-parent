@@ -1,6 +1,6 @@
 package cn.linyt.thinktanklogin.service.impl;
 
-import cn.linyt.common.service.JwtTokenProviderService;
+import cn.linyt.thinktanklogin.service.JwtTokenProviderService;
 import cn.linyt.thinktanklogin.entity.Audience;
 import cn.linyt.thinktanklogin.utils.JwtTokenUtil;
 import com.alibaba.dubbo.config.annotation.Service;
