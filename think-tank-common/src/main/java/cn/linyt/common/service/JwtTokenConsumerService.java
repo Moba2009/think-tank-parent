@@ -12,4 +12,6 @@ import java.io.IOException;
 public interface JwtTokenConsumerService {
 
     boolean parseJwt(String token) throws IOException;
+    String setValue();
+
 }

@@ -26,4 +26,10 @@ public class JwtTokenProviderServiceImpl implements JwtTokenProviderService {
 
         return JwtTokenUtil.parseJwt(token, audience.getBase64Secret());
     }
+
+    @Override
+    public String setValue() {
+
+        return "dubbo";
+    }
 }

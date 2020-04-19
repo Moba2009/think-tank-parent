@@ -73,6 +73,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
 
         // 获取token
 //        final String token = authHeader.substring(7);
+        log.info("### {} ###", jwtTokenConsumerService.setValue());
         final String token = "ksdfowinsdg3453lk6jlk6h3l5hhl23k2l23j5hnl2k5lknk4jl23kj5l2k";
 
         // 验证token是否有效--无效已做异常抛出，由全局异常处理后返回对应信息

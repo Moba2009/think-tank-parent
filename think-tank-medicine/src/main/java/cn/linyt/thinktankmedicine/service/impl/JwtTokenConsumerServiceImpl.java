@@ -25,4 +25,10 @@ public class JwtTokenConsumerServiceImpl implements JwtTokenConsumerService {
 
         return jwtTokenProviderService.parseJwt(token);
     }
+
+    @Override
+    public String setValue() {
+
+        return jwtTokenProviderService.setValue();
+    }
 }
