@@ -8,6 +8,7 @@ import cn.linyt.thinktanklogin.utils.JwtTokenUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -31,7 +32,7 @@ public class AdminUserController {
 
     @JwtIgnore
     @PostMapping("/login")
-    public Result adminLogin(HttpServletResponse response, @RequestBody User user) throws IOException {
+    public Result adminLogin(Model model, HttpServletResponse response, @RequestBody User user) throws IOException {
 
         // 这里模拟测试, 默认登录成功，返回用户ID和角色信息
         if (!"admin".equals(user.getUsername()) && !"666666".equals(user.getPassword())) {
@@ -52,6 +53,7 @@ public class AdminUserController {
         // 将token响应给客户端
         JSONObject result = new JSONObject();
         result.put("token", token);
+        model.addAttribute("model", "6666666666666666");
         return Result.SUCCESS(result);
     }
 
