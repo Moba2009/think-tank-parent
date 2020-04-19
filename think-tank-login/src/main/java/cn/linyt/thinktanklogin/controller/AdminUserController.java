@@ -3,7 +3,7 @@ package cn.linyt.thinktanklogin.controller;
 import cn.linyt.common.response.Result;
 import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.thinktanklogin.entity.Audience;
-import cn.linyt.common.entity.User;
+import cn.linyt.thinktanklogin.entity.User;
 import cn.linyt.thinktanklogin.utils.JwtTokenUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
