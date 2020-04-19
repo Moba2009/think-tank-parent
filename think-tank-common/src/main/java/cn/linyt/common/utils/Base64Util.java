@@ -1,4 +1,4 @@
-package cn.linyt.thinktanklogin.utils;
+package cn.linyt.common.utils;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.slf4j.Logger;

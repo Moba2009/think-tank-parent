@@ -1,6 +1,5 @@
 package cn.linyt.thinktankmedicine.controller;
 
-import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.response.Result;
 import cn.linyt.thinktankmedicine.repository.MedicineRepository;
 import cn.linyt.thinktankmedicine.entity.Medicine;
@@ -58,7 +57,6 @@ public class MedicineController {
      * @Author Mojo
      * @Date 2020/4/19 2:01
      **/
-    @JwtIgnore
     @GetMapping("/{id}")
     public Medicine detail(@PathVariable(value = "id") Long id, HttpServletResponse response) throws IOException {
 

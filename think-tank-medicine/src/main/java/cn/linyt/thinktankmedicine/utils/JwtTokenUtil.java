@@ -1,13 +1,14 @@
-package cn.linyt.thinktanklogin.utils;
+package cn.linyt.thinktankmedicine.utils;
 
 import cn.linyt.common.exception.CustomException;
 import cn.linyt.common.response.Result;
 import cn.linyt.common.response.ResultCode;
 import cn.linyt.common.utils.Base64Util;
-import cn.linyt.thinktanklogin.entity.Audience;
+import cn.linyt.thinktankmedicine.entity.Audience;
 import com.alibaba.fastjson.JSONObject;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
+
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
