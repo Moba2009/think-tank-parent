@@ -35,7 +35,7 @@ public class AdminUserController {
     public Result adminLogin(Model model, HttpServletResponse response, @RequestBody User user) throws IOException {
 
         // 这里模拟测试, 默认登录成功，返回用户ID和角色信息
-        if (!"admin".equals(user.getUsername()) && !"666666".equals(user.getPassword())) {
+        if (!"admin".equals(user.getUsername()) || !"666666".equals(user.getPassword())) {
             log.info("### username: " + user.getUsername() + " ###");
             log.info("### password: " + user.getPassword() + " ###");
             log.info("### username and password is fail! ###");
@@ -53,7 +53,6 @@ public class AdminUserController {
         // 将token响应给客户端
         JSONObject result = new JSONObject();
         result.put("token", token);
-        model.addAttribute("model", "6666666666666666");
         return Result.SUCCESS(result);
     }
 
