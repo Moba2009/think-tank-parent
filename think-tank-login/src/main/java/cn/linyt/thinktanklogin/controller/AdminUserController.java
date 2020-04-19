@@ -31,12 +31,12 @@ public class AdminUserController {
 
     @JwtIgnore
     @PostMapping("/login")
-    public Result adminLogin(HttpServletResponse response, String username, String password) throws IOException {
+    public Result adminLogin(HttpServletResponse response, @RequestBody User user) throws IOException {
 
         // 这里模拟测试, 默认登录成功，返回用户ID和角色信息
-        if (!"admin".equals(username) && !"666666".equals(password)) {
-            log.info("### username: " + username + " ###");
-            log.info("### password: " + password + " ###");
+        if (!"admin".equals(user.getUsername()) && !"666666".equals(user.getPassword())) {
+            log.info("### username: " + user.getUsername() + " ###");
+            log.info("### password: " + user.getPassword() + " ###");
             log.info("### username and password is fail! ###");
             return Result.FAIL("用户名或密码错误!");
         }
@@ -44,7 +44,7 @@ public class AdminUserController {
         String role = "admin";
 
         // 创建token
-        String token = JwtTokenUtil.createJWT(userId, username, role, audience, response);
+        String token = JwtTokenUtil.createJWT(userId, user.getUsername(), role, audience, response);
         log.info("### 登录成功, token={} ###", token);
 
         // 将token放在响应头
