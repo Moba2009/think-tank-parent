@@ -41,17 +41,16 @@ public class AdminUserController {
     public Result adminLogin(Model model, HttpServletResponse response, @RequestBody User user) throws IOException {
 
         // 检测是否登录
-        boolean exist = userRepository.findByUsernameAndPassword(user);
-        log.info("### user: {} ###", exist);
-        /*if (!user.getUsername().equals(userRepository.findOne())) {
+        User user1 = userRepository.findByUsername(user.getUsername());
+        if (null == user1) {
             //用户名错误
             log.info("### username is fail! ###");
             return Result.FAIL("用户名错误");
-        } else if (!"666666".equals(user.getPassword())) {
+        } else if (!user1.getPassword().equals(user.getPassword())) {
             //用户名错误
             log.info("### password is fail! ###");
             return Result.FAIL("密码错误");
-        }   //登录成功*/
+        }   //登录成功
         String userId = UUID.randomUUID().toString();
         String role = "admin";
 
