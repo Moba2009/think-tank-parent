@@ -24,7 +24,7 @@ public class HelloController {
     @PostMapping
     public Result hello(@RequestBody String data) {
 
-        JSONObject json = (JSONObject) JSONObject.toJSON(data);
+        JSONObject json = (JSONObject) JSONObject.parse(data);
         log.info("### hello: " + json.get("username") + " ###");
         JSONObject result = new JSONObject();
         result.put("username", json.get("username"));
