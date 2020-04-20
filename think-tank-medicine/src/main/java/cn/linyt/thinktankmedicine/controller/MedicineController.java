@@ -21,8 +21,8 @@ import java.util.*;
  * @Date 2020/4/18 17:19
  * @Version 1.0
  **/
-@CrossOrigin
 @Slf4j
+@CrossOrigin
 @RestController
 @RequestMapping("/medicines")
 public class MedicineController {

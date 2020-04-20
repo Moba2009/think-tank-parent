@@ -27,7 +27,6 @@ import javax.servlet.http.HttpServletResponse;
  * @Version 1.0
  **/
 @Slf4j
-@CrossOrigin
 public class JwtInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
