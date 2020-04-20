@@ -1,5 +1,6 @@
 package cn.linyt.thinktankmedicine.filter;
 
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -14,7 +15,7 @@ import java.util.Enumeration;
  * @ClassName CustomCorsFilter
  * @Description TODO
  * @Author Mojo
- * @Date 2020/4/20 21:46
+ * @Date 2020/4/20 21:55
  * @Version 1.0
  **/
 @Configuration
