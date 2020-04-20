@@ -12,6 +12,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -26,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
  * @Version 1.0
  **/
 @Slf4j
+@CrossOrigin
 public class JwtInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
