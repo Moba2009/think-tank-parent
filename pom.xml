@@ -22,7 +22,7 @@
     </modules>
 
     <properties>
-        <tomcat.version>9.0.12</tomcat.version>
+        <tomcat.version>9.0.31</tomcat.version>
     </properties>
 
     <dependencies>
