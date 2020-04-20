@@ -1,6 +1,5 @@
 package cn.linyt.thinktankmedicine.controller;
 
-import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.response.Result;
 import cn.linyt.common.utils.PinYinUtil;
 import cn.linyt.thinktankmedicine.repository.MedicineRepository;

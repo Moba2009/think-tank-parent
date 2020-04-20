@@ -28,16 +28,18 @@ public class WebConfig implements WebMvcConfigurer {
 
     /**
      * 跨域支持
+     * 页面跨域访问Controller过滤
      *
      * @param registry
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
 
+        WebMvcConfigurer.super.addCorsMappings(registry);
         registry.addMapping("/**")
                 .allowedOrigins("*")
-                .allowCredentials(true)
-                .allowedHeaders("Access-Control-Allow-Headers", "Authorization, Content-Type")
+//                .allowCredentials(true)  //cookie
+                .allowedHeaders("*")
                 .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS", "HEAD")
                 .maxAge(3600 * 24);
     }
