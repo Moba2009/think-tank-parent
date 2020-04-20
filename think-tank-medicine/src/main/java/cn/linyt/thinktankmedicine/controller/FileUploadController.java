@@ -34,11 +34,17 @@ import java.util.UUID;
 @Slf4j
 @CrossOrigin
 @RestController
+@RequestMapping("/fileUpload")
 public class FileUploadController {
 
     private static final List<String> CONTENT_TYPES = Arrays.asList("image/jpg", "image/gif", "image/jpeg", "image/png");
 
-    @PostMapping("/fileUpload")
+    /**
+     * @Description TODO    POST /fileUpload
+     * @Author Mojo
+     * @Date 2020/4/21 4:14
+     **/
+    @PostMapping()
     public Result fileUpload(@RequestParam(value = "file") MultipartFile file, HttpServletResponse response) {
 
         //设置响应数据类型和编码方式
