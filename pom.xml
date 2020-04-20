@@ -21,6 +21,10 @@
         <module>think-tank-common</module>
     </modules>
 
+    <properties>
+        <tomcat.version>9.0.12</tomcat.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
