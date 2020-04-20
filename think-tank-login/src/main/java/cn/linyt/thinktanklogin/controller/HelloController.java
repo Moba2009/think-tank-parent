@@ -2,6 +2,7 @@ package cn.linyt.thinktanklogin.controller;
 
 import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.response.Result;
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -23,9 +24,10 @@ public class HelloController {
     @PostMapping
     public Result hello(@RequestBody String data) {
 
-        log.info("### hello: " + data + " ###");
+        JSONObject json = (JSONObject) JSONObject.toJSON(data);
+        log.info("### hello: " + json.get("username") + " ###");
         JSONObject result = new JSONObject();
-        result.put("token", data);
+        result.put("username", json.get("username"));
         return Result.SUCCESS(result);
     }
 }
