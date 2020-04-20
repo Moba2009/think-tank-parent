@@ -31,13 +31,15 @@ public class WebConfig implements WebMvcConfigurer {
      *
      * @param registry
      */
-    @Override
-    public void addCorsMappings(CorsRegistry registry) {
-
-        registry.addMapping("/**")
-                .allowedOrigins("*")
-                .allowCredentials(true)
-                .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS", "HEAD")
-                .maxAge(3600 * 24);
-    }
+    //    @Override
+//    public void addCorsMappings(CorsRegistry registry) {
+//
+//        WebMvcConfigurer.super.addCorsMappings(registry);
+//        registry.addMapping("/**")
+//                .allowedOrigins("*")
+////                .allowCredentials(true)  //cookie
+//                .allowedHeaders("*")
+//                .allowedMethods("GET", "POST", "DELETE", "PUT", "PATCH", "OPTIONS", "HEAD")
+//                .maxAge(3600 * 24);
+//    }
 }
