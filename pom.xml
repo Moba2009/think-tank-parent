@@ -22,7 +22,7 @@
     </modules>
 
     <properties>
-        <tomcat.version>9.0.12</tomcat.version>
+        <tomcat.version>7.0.73</tomcat.version>
     </properties>
 
     <dependencies>
@@ -31,11 +31,9 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-core</artifactId>
-            <version>${tomcat.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
