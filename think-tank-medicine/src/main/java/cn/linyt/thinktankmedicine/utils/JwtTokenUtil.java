@@ -85,7 +85,7 @@ public class JwtTokenUtil {
                     .setAudience(audience.getName())          // 代表这个JWT的接收对象；
                     .signWith(signatureAlgorithm, signingKey);
             //添加Token过期时间
-            int TTLMillis = audience.getExpiresSecond();
+            int TTLMillis = audience.getExpiresSecond() * 1000;
             if (TTLMillis >= 0) {
                 long expMillis = nowMillis + TTLMillis;
                 Date exp = new Date(expMillis);
