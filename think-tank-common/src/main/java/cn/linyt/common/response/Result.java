@@ -33,6 +33,7 @@ public class Result<T> {
     }
 
     public Result(String message){
+        this.code = -1;
         this.message = message;
     }
 
