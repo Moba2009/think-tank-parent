@@ -4,6 +4,7 @@ import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.exception.CustomException;
 import cn.linyt.common.response.Result;
 import cn.linyt.common.response.ResultCode;
+import cn.linyt.common.service.ParseJWTService;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
@@ -30,6 +31,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     public static final String TOKEN_PREFIX = "Bearer ";
 
     @Reference
+    private ParseJWTService parseJWTService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
@@ -71,7 +73,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         final String token = authHeader.substring(7);
 
         // 验证token是否有效--无效已做异常抛出，由全局异常处理后返回对应信息
-        ParseTokenServiceImpl.parseToken(token);
+        parseJWTService.parseJWT(token);
         return true;
     }
 }

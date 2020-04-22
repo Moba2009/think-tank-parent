@@ -1,14 +1,11 @@
 package cn.linyt.thinktankmedicine.controller;
 
-import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.response.Result;
-import cn.linyt.common.service.ParseJWTService;
 import cn.linyt.common.utils.PinYinUtil;
 import cn.linyt.thinktankmedicine.repository.MedicineRepository;
 import cn.linyt.thinktankmedicine.entity.Medicine;
 import cn.linyt.thinktankmedicine.entity.MedicinePro;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
