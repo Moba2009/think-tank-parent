@@ -3,8 +3,6 @@ package cn.linyt.common.service;
 import cn.linyt.common.exception.CustomException;
 import io.jsonwebtoken.Claims;
 
-import java.io.IOException;
-
 /**
  * @InterfaceName ParseJWTService
  * @Description TODO

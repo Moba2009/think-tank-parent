@@ -7,6 +7,7 @@ import cn.linyt.common.response.ResultCode;
 import cn.linyt.common.service.ParseJWTService;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.StringUtils;
@@ -29,11 +30,11 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     public static final String AUTH_HEADER_KEY = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
 
-    @Autowired
+    @Reference
     private ParseJWTService parseJWTService;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws CustomException, IOException {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
 
         //如果不是映射到方法直接通过
         if (!(handler instanceof HandlerMethod)) {
