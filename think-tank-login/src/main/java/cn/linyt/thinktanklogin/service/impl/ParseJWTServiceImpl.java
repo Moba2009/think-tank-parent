@@ -23,14 +23,8 @@ public class ParseJWTServiceImpl implements ParseJWTService {
     private Audience audience;
 
     @Override
-    public Claims parseJWT(String jsonWebToken) throws CustomException {
+    public boolean parseJWT(String jsonWebToken) throws CustomException {
 
-        return JwtTokenUtil.parseJWT(jsonWebToken, audience.getBase64Secret());
-    }
-
-    @Override
-    public String getHello() {
-
-        return "hello world";
+        return JwtTokenUtil.parseJwt(jsonWebToken, audience.getBase64Secret());
     }
 }

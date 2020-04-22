@@ -32,9 +32,6 @@ public class MedicineController {
     @Autowired
     private MedicineRepository medicineRepository;
 
-    @Reference
-    private ParseJWTService parseJWTService;
-
     /**
      * @Description TODO    GET /medicines
      * @Author Mojo
@@ -106,12 +103,5 @@ public class MedicineController {
         }
         medicineRepository.save(medicine);
         return Result.SUCCESS();
-    }
-
-    @JwtIgnore
-    @RequestMapping("/hello")
-    public String getHello() {
-
-        return parseJWTService.getHello();
     }
 }

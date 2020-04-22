@@ -51,6 +51,27 @@ public class JwtTokenUtil {
     }
 
     /**
+     * 解析jwt
+     * @param jsonWebToken
+     * @param base64Security
+     * @return
+     */
+    public static boolean parseJwt(String jsonWebToken, String base64Security) throws CustomException {
+        try {
+            Claims claims = Jwts.parser()
+                    .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))
+                    .parseClaimsJws(jsonWebToken).getBody();
+            return true;
+        } catch (ExpiredJwtException eje) {
+            log.error("===== Token过期 =====", eje);
+            throw new CustomException(ResultCode.PERMISSION_TOKEN_EXPIRED);
+        } catch (Exception e){
+            log.error("===== token解析异常 =====", e);
+            throw new CustomException(ResultCode.PERMISSION_TOKEN_INVALID);
+        }
+    }
+
+    /**
      * 构建jwt
      * @param userId
      * @param username
