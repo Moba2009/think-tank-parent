@@ -4,9 +4,9 @@ import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.exception.CustomException;
 import cn.linyt.common.response.Result;
 import cn.linyt.common.response.ResultCode;
-import cn.linyt.thinktankmedicine.service.impl.ParseTokenServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -29,8 +29,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     public static final String AUTH_HEADER_KEY = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
 
-//    @Autowired
-//    private ParseTokenService parseTokenService;
+    @Reference
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
