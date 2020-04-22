@@ -4,13 +4,12 @@ import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.exception.CustomException;
 import cn.linyt.common.response.Result;
 import cn.linyt.common.response.ResultCode;
-import cn.linyt.common.service.ParseJWTService;
 import cn.linyt.common.service.ParseTokenService;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
@@ -27,6 +26,7 @@ import java.io.IOException;
  * @Version 1.0
  **/
 @Slf4j
+@Component
 public class JwtInterceptor extends HandlerInterceptorAdapter {
 
     public static final String AUTH_HEADER_KEY = "Authorization";
