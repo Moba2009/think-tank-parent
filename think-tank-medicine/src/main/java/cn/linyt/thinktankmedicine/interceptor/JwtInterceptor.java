@@ -13,6 +13,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -25,13 +27,22 @@ import java.io.IOException;
  * @Version 1.0
  **/
 @Slf4j
+@Component
 public class JwtInterceptor extends HandlerInterceptorAdapter {
+
+    private static JwtInterceptor jwtInterceptor;
 
     public static final String AUTH_HEADER_KEY = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
 
     @Reference
     private ParseJWTService parseJWTService;
+
+    @PostConstruct
+    public void init() {
+
+        jwtInterceptor = this;
+    }
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
