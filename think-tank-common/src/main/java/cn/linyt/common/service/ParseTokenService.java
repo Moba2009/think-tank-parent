@@ -4,13 +4,13 @@ import cn.linyt.common.exception.CustomException;
 import io.jsonwebtoken.Claims;
 
 /**
- * @InterfaceName ParseJWTService
+ * @InterfaceName ParseTokenService
  * @Description TODO
  * @Author Mojo
- * @Date 2020/4/23 1:16
+ * @Date 2020/4/23 4:56
  * @Version 1.0
  **/
-public interface ParseJWTService {
+public interface ParseTokenService {
 
-    Claims parseJWT(String jsonWebToken) throws CustomException;
+    Claims parseToken(String jsonWebToken) throws CustomException;
 }
