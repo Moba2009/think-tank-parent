@@ -4,16 +4,12 @@ import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.exception.CustomException;
 import cn.linyt.common.response.Result;
 import cn.linyt.common.response.ResultCode;
-import cn.linyt.thinktankmedicine.entity.Audience;
-import cn.linyt.thinktankmedicine.utils.JwtTokenUtil;
+import cn.linyt.common.service.ParseJWTService;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
@@ -29,8 +25,11 @@ import javax.servlet.http.HttpServletResponse;
 @Slf4j
 public class JwtInterceptor extends HandlerInterceptorAdapter {
 
+    public static final String AUTH_HEADER_KEY = "Authorization";
+    public static final String TOKEN_PREFIX = "Bearer ";
+
     @Autowired
-    private Audience audience;
+    private ParseJWTService parseJWTService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -54,10 +53,10 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         }
 
         // 获取请求头信息authorization信息
-        final String authHeader = request.getHeader(JwtTokenUtil.AUTH_HEADER_KEY);
+        final String authHeader = request.getHeader(AUTH_HEADER_KEY);
         log.info("### authHeader= {}", authHeader);
 
-        if (StringUtils.isEmpty(authHeader) || !authHeader.startsWith(JwtTokenUtil.TOKEN_PREFIX)) {
+        if (StringUtils.isEmpty(authHeader) || !authHeader.startsWith(TOKEN_PREFIX)) {
             //用户没有登录，请先登录
             log.info("### User is not logged in, please log in first ###");
             //设置响应状态码
@@ -71,13 +70,8 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         // 获取token
         final String token = authHeader.substring(7);
 
-        if(audience == null){
-            BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
-            audience = (Audience) factory.getBean("audience");
-        }
-
         // 验证token是否有效--无效已做异常抛出，由全局异常处理后返回对应信息
-        JwtTokenUtil.parseJWT(token, audience.getBase64Secret());
+        parseJWTService.parseJWT(token);
 
         return true;
     }

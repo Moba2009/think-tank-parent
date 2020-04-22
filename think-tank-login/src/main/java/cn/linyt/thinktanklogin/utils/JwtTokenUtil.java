@@ -77,7 +77,7 @@ public class JwtTokenUtil {
             JwtBuilder builder = Jwts.builder().setHeaderParam("typ", "JWT")
                     // 可以将基本不重要的对象信息放到claims
                     .claim("role", role)
-                    .claim("userId", userId)
+                    .claim("userId", encryId)
                     .setSubject(username)           // 代表这个JWT的主体，即它的所有人
                     .setIssuer(audience.getClientId())              // 代表这个JWT的签发主体；
                     .setIssuedAt(new Date())        // 是一个时间戳，代表这个JWT的签发时间；
