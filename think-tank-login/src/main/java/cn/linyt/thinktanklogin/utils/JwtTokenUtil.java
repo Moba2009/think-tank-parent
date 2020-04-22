@@ -35,7 +35,7 @@ public class JwtTokenUtil {
      * @param base64Security
      * @return
      */
-    public static Claims parseJWT(String jsonWebToken, String base64Security) throws IOException {
+    public static Claims parseJWT(String jsonWebToken, String base64Security) throws CustomException {
         try {
             Claims claims = Jwts.parser()
                     .setSigningKey(DatatypeConverter.parseBase64Binary(base64Security))

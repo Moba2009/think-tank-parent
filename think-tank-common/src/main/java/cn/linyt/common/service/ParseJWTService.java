@@ -1,5 +1,6 @@
 package cn.linyt.common.service;
 
+import cn.linyt.common.exception.CustomException;
 import io.jsonwebtoken.Claims;
 
 import java.io.IOException;
@@ -13,5 +14,5 @@ import java.io.IOException;
  **/
 public interface ParseJWTService {
 
-    Claims parseJWT(String jsonWebToken) throws IOException;
+    Claims parseJWT(String jsonWebToken) throws CustomException;
 }

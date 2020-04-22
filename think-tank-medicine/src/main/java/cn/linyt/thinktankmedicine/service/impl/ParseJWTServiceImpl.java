@@ -1,5 +1,6 @@
 package cn.linyt.thinktankmedicine.service.impl;
 
+import cn.linyt.common.exception.CustomException;
 import cn.linyt.common.service.ParseJWTService;
 import io.jsonwebtoken.Claims;
 import org.apache.dubbo.config.annotation.Reference;
@@ -21,7 +22,7 @@ public class ParseJWTServiceImpl implements ParseJWTService {
     private ParseJWTService parseJWTService;
 
     @Override
-    public Claims parseJWT(String jsonWebToken) throws IOException {
+    public Claims parseJWT(String jsonWebToken) throws CustomException {
 
         return parseJWTService.parseJWT(jsonWebToken);
     }

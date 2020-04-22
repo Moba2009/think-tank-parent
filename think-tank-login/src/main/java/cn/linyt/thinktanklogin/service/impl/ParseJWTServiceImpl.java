@@ -1,5 +1,6 @@
 package cn.linyt.thinktanklogin.service.impl;
 
+import cn.linyt.common.exception.CustomException;
 import cn.linyt.common.service.ParseJWTService;
 import cn.linyt.thinktanklogin.entity.Audience;
 import cn.linyt.thinktanklogin.utils.JwtTokenUtil;
@@ -23,7 +24,7 @@ public class ParseJWTServiceImpl implements ParseJWTService {
     private Audience audience;
 
     @Override
-    public Claims parseJWT(String jsonWebToken) throws IOException {
+    public Claims parseJWT(String jsonWebToken) throws CustomException {
 
         return JwtTokenUtil.parseJWT(jsonWebToken, audience.getBase64Secret());
     }

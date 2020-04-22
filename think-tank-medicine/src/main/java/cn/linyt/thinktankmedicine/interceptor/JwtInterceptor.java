@@ -14,6 +14,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * @ClassName JwtInterceptor
@@ -32,7 +33,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     private ParseJWTService parseJWTService;
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws CustomException, IOException {
 
         //如果不是映射到方法直接通过
         if (!(handler instanceof HandlerMethod)) {
