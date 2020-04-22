@@ -8,7 +8,6 @@ import io.jsonwebtoken.Claims;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.io.IOException;
 
 /**
  * @ClassName ParseJWTServiceImpl
