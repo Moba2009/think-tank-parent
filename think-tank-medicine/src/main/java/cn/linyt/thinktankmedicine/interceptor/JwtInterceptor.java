@@ -25,7 +25,6 @@ import java.io.IOException;
  * @Version 1.0
  **/
 @Slf4j
-@Component
 public class JwtInterceptor extends HandlerInterceptorAdapter {
 
     public static final String AUTH_HEADER_KEY = "Authorization";
