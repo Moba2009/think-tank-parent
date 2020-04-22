@@ -13,4 +13,5 @@ import io.jsonwebtoken.Claims;
 public interface ParseJWTService {
 
     Claims parseJWT(String jsonWebToken) throws CustomException;
+    String getHello();
 }

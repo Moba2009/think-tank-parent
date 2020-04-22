@@ -28,4 +28,10 @@ public class ParseJWTServiceImpl implements ParseJWTService {
 
         return JwtTokenUtil.parseJWT(jsonWebToken, audience.getBase64Secret());
     }
+
+    @Override
+    public String getHello() {
+
+        return "hello world";
+    }
 }
