@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @EnableDubbo
-@DubboComponentScan
+@DubboComponentScan(basePackages = "cn.linyt.thinktankmedicine.interceptor")
 @SpringBootApplication
 public class ThinkTankMedicineApplication {
 
