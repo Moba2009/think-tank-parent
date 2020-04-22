@@ -4,10 +4,9 @@ import cn.linyt.common.annotation.JwtIgnore;
 import cn.linyt.common.exception.CustomException;
 import cn.linyt.common.response.Result;
 import cn.linyt.common.response.ResultCode;
-import cn.linyt.common.service.ParseTokenService;
+import cn.linyt.thinktankmedicine.service.impl.ParseTokenServiceImpl;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
@@ -30,8 +29,8 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
     public static final String AUTH_HEADER_KEY = "Authorization";
     public static final String TOKEN_PREFIX = "Bearer ";
 
-    @Autowired
-    private ParseTokenService parseTokenService;
+//    @Autowired
+//    private ParseTokenService parseTokenService;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws IOException {
@@ -73,7 +72,7 @@ public class JwtInterceptor extends HandlerInterceptorAdapter {
         final String token = authHeader.substring(7);
 
         // 验证token是否有效--无效已做异常抛出，由全局异常处理后返回对应信息
-        parseTokenService.parseToken(token);
+        ParseTokenServiceImpl.parseToken(token);
         return true;
     }
 }
